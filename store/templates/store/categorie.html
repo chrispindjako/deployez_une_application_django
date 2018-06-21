@@ -1,0 +1,6 @@
+<h1 class="my-5">{{ title }}</h1>
+<div class="list-group">
+    {% for artist in artists.all %}
+        <a href="{% url 'store:search' %}?query={{artist.name}}" class="list-group-item">{{ artist.name }}</a>
+    {% endfor %}
+</div>

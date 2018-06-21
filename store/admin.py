@@ -56,8 +56,8 @@ class ContactAdmin(admin.ModelAdmin):
 class AlbumArtistInline(admin.TabularInline):
     model = Album.artists.through
     extra = 1
-    verbose_name = "Disque"
-    verbose_name_plural = "Disques"
+    verbose_name = "Categorie"
+    verbose_name_plural = "Categories"
 
 
 @admin.register(Artist)

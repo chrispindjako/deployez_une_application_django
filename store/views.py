@@ -8,9 +8,11 @@ from .forms import ContactForm, ParagraphErrorList
 
 
 def index(request):
+    artists_list = Artist.objects.all()
     albums = Album.objects.filter(available=True).order_by('-created_at')[:12]
     context = {
-        'albums': albums
+        'albums': albums,
+        'artists': artists_list,
     }
     return render(request, 'store/index.html', context)
 
@@ -29,6 +31,22 @@ def listing(request):
         'paginate': True
     }
     return render(request, 'store/listing.html', context)
+
+def categories(request):
+    artists_list = Artist.objects.all()
+    paginator = Paginator(artists_list, 9)
+    page = request.GET.get('page')
+    try:
+        artists = paginator.page(page)
+    except PageNotAnInteger:
+        artists = paginator.page(1)
+    except EmptyPage:
+        artists = paginator.page(paginator.num_pages)
+    context = {
+        'artists': artists,
+        'paginate': True
+    }
+    return render(request, 'store/categorie.html', context)
 
 @transaction.atomic
 def detail(request, album_id):

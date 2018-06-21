@@ -5,7 +5,7 @@ class Artist(models.Model):
     name = models.CharField('nom', max_length=200, unique=True)
 
     class Meta:
-        verbose_name = "artiste"
+        verbose_name = "Categorie"
 
     def __str__(self):
         return self.name
@@ -16,7 +16,7 @@ class Contact(models.Model):
     name = models.CharField('nom', max_length=200)
 
     class Meta:
-        verbose_name = "prospect"
+        verbose_name = "Contact"
 
     def __str__(self):
         return self.name
@@ -31,7 +31,7 @@ class Album(models.Model):
     artists = models.ManyToManyField(Artist, related_name='albums', blank=True)
 
     class Meta:
-        verbose_name = "disque"
+        verbose_name = "produit"
 
     def __str__(self):
         return self.title

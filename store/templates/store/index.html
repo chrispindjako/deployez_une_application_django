@@ -1,8 +1,41 @@
-{% extends 'store/base.html' %}
+{% extends 'store/base.html' %} {% block content %}
+<div class="col-lg-3">
 
+  {% include 'store/categorie.html' with title='Categories' %}
 
-{% block content %}
+</div>
+<div class="col-lg-9">
 
-  {% include 'store/list.html' with list_title='Nos derniers disques' %}
+  <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      {% for album in albums %} {% if album.id == albums.0.id %}
+      <div class="carousel-item active">
+        {% else %}
+        <div class="carousel-item">
+          {% endif %} {% if album.picture %}
+          <img class="d-block img-fluid" src="{{ album.picture }}" alt="{{ album.title }}" height="350px" width="900px"> {% else %}
+          <img class="d-block img-fluid" src="http://placehold.it/700x400" alt="{{ album.title }}" height="350px" width="900px"> {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    
+        {% include 'store/list.html' with list_title='Nos derniers produits' %}
 
+  </div>
+
+</div>
 {% endblock %}
