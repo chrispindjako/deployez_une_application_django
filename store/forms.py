@@ -14,8 +14,9 @@ class ParagraphErrorList(ErrorList):
 class ContactForm(ModelForm):
     class Meta:
         model = Contact
-        fields = ["name", "email"]
+        fields = ["name", "email", "phone"]
         widgets = {
             'name': TextInput(attrs={'class': 'form-control'}),
+            'phone': TextInput(attrs={'class': 'form-control'}),
             'email': EmailInput(attrs={'class': 'form-control'})
         }

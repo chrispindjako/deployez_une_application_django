@@ -13,6 +13,7 @@ def index(request):
     context = {
         'albums': albums,
         'artists': artists_list,
+        'col': 4,
     }
     return render(request, 'store/index.html', context)
 
@@ -64,6 +65,7 @@ def detail(request, album_id):
         if form.is_valid():
             email = form.cleaned_data['email']
             name = form.cleaned_data['name']
+            phone = form.cleaned_data['phone']
 
             try:
                 with transaction.atomic():
@@ -72,7 +74,8 @@ def detail(request, album_id):
                         # If a contact is not registered, create a new one.
                         contact = Contact.objects.create(
                             email=email,
-                            name=name
+                            name=name,
+                            phone=phone
                         )
                     else:
                         contact = contact.first()
@@ -109,6 +112,7 @@ def search(request):
     title = "Résultats pour la requête %s"%query
     context = {
         'albums': albums,
-        'title': title
+        'title': title,
+        'col': 3,
     }
     return render(request, 'store/search.html', context)

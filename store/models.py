@@ -12,9 +12,9 @@ class Artist(models.Model):
 
 
 class Contact(models.Model):
-    email = models.EmailField('email', max_length=100)
     name = models.CharField('nom', max_length=200)
-
+    phone = models.CharField('phone', max_length=13)
+    email = models.EmailField('email', max_length=100)
     class Meta:
         verbose_name = "Contact"
 

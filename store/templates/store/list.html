@@ -16,30 +16,30 @@
 
     {% for album in albums %}
 
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-            <a href="{% url 'store:detail' album_id=album.id %}">
-                {% if album.picture %}
-                <img class="card-img-top" src="{{ album.picture }}" alt="" height="144.56px"> {% else %}
-                <img class="card-img-top" src="http://placehold.it/700x400" alt="" height="144.56px"> {% endif %}
-            </a>
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a href="{% url 'store:detail' album_id=album.id %}">{{ album.title }}</a>
-                </h4>
-                <h5>{{ album.title }} F.CFA</h5>
-                <p class="card-text">{{ album.title }}</p>
-                <p class="card-text">
-                    {% for artist in album.artists.all %}
-                        {{ artist.name }}
-                    {% endfor %}
-                </p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        <div class="col-lg-{{ col }} col-md-6">
+            <div class="card h-100">
+                <a href="{% url 'store:detail' album_id=album.id %}">
+                    {% if album.picture %}
+                    <img class="card-img-top" src="{{ album.picture }}" alt="" height="144.56px"> {% else %}
+                    <img class="card-img-top" src="http://placehold.it/700x400" alt="" height="144.56px"> {% endif %}
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="{% url 'store:detail' album_id=album.id %}">{{ album.title }}</a>
+                    </h4>
+                    <h5>{{ album.title }} F.CFA</h5>
+                    <p class="card-text">{{ album.title }}</p>
+                    <p class="card-text">
+                        {% for artist in album.artists.all %}
+                            {{ artist.name }}
+                        {% endfor %}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <!-- <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small> -->
+                </div>
             </div>
         </div>
-    </div>
 
     {% endfor %}
 </div>
